@@ -49,7 +49,7 @@
         "no-empty": true,
         "no-eval": true,
         "no-shadowed-variable": true,
-        "no-string-literal": true,
+        //"no-string-literal": true,
         "no-switch-case-fall-through": true,
         "no-trailing-whitespace": false,
         "no-unused-expression": true,
@@ -61,10 +61,10 @@
             "check-open-brace",
             "check-whitespace"
         ],
-        "quotemark": [true, "single", "jsx-double"],
+        //"quotemark": [true, "single", "jsx-double"],
         "radix": true,
-        "semicolon": [true, "always"],
-        "switch-default": true,
+        //"semicolon": [true, "always"],
+        //"switch-default": true,
 
         "trailing-comma": [false],
 
