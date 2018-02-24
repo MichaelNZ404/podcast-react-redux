@@ -1,7 +1,8 @@
 import * as React from 'react';
 
 import './Library.css';
-import Carousel from './Carousel';
+// @ts-ignore
+import OwlCarousel from 'react-owl-carousel';
 
 let data = require('../../src/us-top-100-podcasts.json')
 
@@ -35,8 +36,8 @@ class Library extends React.Component<Props, State> {
             return <span>Loading</span>
         }
         const cards = this.state.podcasts.map((podcast: Podcast) => 
-            <LibraryCard key={podcast.id} {...podcast} />);
-        return (<Carousel cards={cards} />);
+        <div key={podcast.id} className="item"><LibraryCard  {...podcast} /></div>);
+        return (<OwlCarousel className="owl-theme" loop={true} margin={10} nav={true}>{cards}</OwlCarousel>);
     }
 
 }

@@ -122,7 +122,7 @@ class Carousel extends React.Component<Props, State> {
               )}
             </ul>
           </div>
-          </div>
+        </div>
         );
       }
   

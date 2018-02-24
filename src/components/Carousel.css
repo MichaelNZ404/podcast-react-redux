@@ -5,6 +5,12 @@
   min-height: 210px;
 }
 
+ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+  }
+
 .carousel {
   position: relative;
 }
@@ -90,6 +96,6 @@
     opacity: .5;
 }
 
-.carousel__indicator--active:hover {
-    opacity: .75;
+.carousel__indicator--active{
+    opacity: 1;
 }
