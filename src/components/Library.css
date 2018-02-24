@@ -36,3 +36,11 @@ a {
 .owl-stage-outer{
   height: 250px;
 }
+
+.genre-strip h4{
+  color: #db0000
+}
+
+.library-container{
+  margin-left: 10px;
+}

@@ -15,7 +15,8 @@ export interface Podcast {
     id: string,
     releaseDate: string,
     name: string,
-    artworkUrl100: string
+    artworkUrl100: string,
+    genres: Array<Genre>
 }
 export interface State {
     loading: boolean,
@@ -35,9 +36,12 @@ class Library extends React.Component<Props, State> {
         if (this.state.loading) {
             return <span>Loading</span>
         }
-        const cards = this.state.podcasts.map((podcast: Podcast) => 
-        <div key={podcast.id} className="item"><LibraryCard  {...podcast} /></div>);
-        return (<OwlCarousel className="owl-theme" loop={true} margin={10}>{cards}</OwlCarousel>);
+        const genres = getPodcastGenres(this.state.podcasts);
+        const strips = Object.keys(genres).map((key: string) => 
+            <div key={key}><GenreStripCard  name={key} podcasts={genres[key]} /></div>);
+        return (
+            <div className="library-container">{strips}</div>
+        );
     }
 
 }
@@ -56,5 +60,42 @@ export function LibraryCard(props: Podcast) {
                 <div className="clearfix" />
             </div>
         </a>     
+    );
+}
+
+interface Genre {
+    name: string;
+    podcasts: Array<Podcast>;
+}
+function getPodcastGenres(podcasts: Array<Podcast>) {
+    let genres = {};
+    podcasts.forEach((podcast) => {
+        podcast.genres.forEach((genre: Genre) => {
+            if (genre.name === 'Podcasts' || genre.name === 'Podcasting') {
+                return
+            }
+            if (!(genre.name in genres)) {
+                genres[genre.name] = [];
+            }
+            genres[genre.name].push(podcast);
+        })
+    })
+
+    Object.keys(genres).forEach((key) => {
+        if (genres[key].length < 3) {
+            delete genres[key]
+        }
+    });
+    return genres
+}
+
+function GenreStripCard(genre: Genre) {
+    const cards = genre['podcasts'].map((podcast: Podcast) => 
+        <div key={podcast.id} className="item"><LibraryCard  {...podcast} /></div>);
+    return (
+        <div className='genre-strip'>
+            <h4>{genre.name}</h4>
+            <OwlCarousel className="owl-theme" loop={true} margin={10}>{cards}</OwlCarousel>
+        </div> 
     );
 }
