@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Link } from "react-router-dom";
 
 import './Library.css';
 // @ts-ignore
@@ -48,8 +49,9 @@ class Library extends React.Component<Props, State> {
 export default Library;
 
 export function LibraryCard(props: Podcast) {
+    const link = `/podcast/${getpodIdFromUrl(props.url)}`;
     return (
-        <a href={props.url}>
+        <Link to={link} >
             <div className="podcast-card">
                 <img className="podcast-image" src={props.artworkUrl100}/>
                 <div className="podcast-details">
@@ -59,12 +61,28 @@ export function LibraryCard(props: Podcast) {
                 </div>
                 <div className="clearfix" />
             </div>
-        </a>     
+        </Link>
     );
 }
 
+function getpodIdFromUrl(url: string): number {
+    let match = url.match(/id(\d+)/)
+    let podID: any = null;
+
+    if (match) {
+        podID = match[1]; 
+    } else {
+        podID = url.match(/\d+/);  // 123456 
+    } 
+
+    if (!podID) {
+        throw "Provided url seems to be invalid";
+    }
+    return podID
+}
+
 interface Genre {
-    name: string;
+    name:    string;
     podcasts: Array<Podcast>;
 }
 function getPodcastGenres(podcasts: Array<Podcast>) {
@@ -82,7 +100,7 @@ function getPodcastGenres(podcasts: Array<Podcast>) {
     })
 
     Object.keys(genres).forEach((key) => {
-        if (genres[key].length < 3) {
+        if    (genres[key].length < 3) {
             delete genres[key]
         }
     });

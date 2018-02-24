@@ -3,6 +3,7 @@ import './Episodes.css';
 
 export interface Props {
     itunes_url: string;
+    match: { params: {podcastId: string}}
 }
 export interface Episode {
     audioUrl: string,
@@ -14,6 +15,7 @@ export interface Episode {
 }
 export interface State {
     loading: boolean,
+    error: boolean,
     itunes_url: string,
     feed_url: string | null
     episodes: Array<any>
@@ -22,7 +24,7 @@ export interface State {
 class Episodes extends React.Component<Props, State> {
     constructor(props: Props) {
         super(props);
-        getrssUrl(props.itunes_url)
+        getrssUrl(props.match.params.podcastId)
             .then(response => response.json())
             .then(response => response['results'][0]['feedUrl']) 
             .then(feedUrl => {
@@ -51,9 +53,16 @@ class Episodes extends React.Component<Props, State> {
                             episodes: episodes
                         })
                     })
+                    .catch((error) => {
+                        this.setState({
+                            error: true,
+                            loading: false
+                        })
+                    })
             });
         this.state = {
             loading: true,
+            error: false,
             itunes_url: props.itunes_url,
             feed_url: null,
             episodes: []
@@ -64,9 +73,11 @@ class Episodes extends React.Component<Props, State> {
         if (this.state.loading) {
             return <span>Loading</span>
         }
+        if (this.state.error) {
+            return <span>ERROR</span>
+        }
         return (
             <div>
-                <span>{this.state.itunes_url}</span>
                 <div>{this.state.feed_url}</div>
                 {this.state.episodes.slice(0, 10).map(episode => <EpisodeCard key={episode.title} {...episode} />)}
             </div>

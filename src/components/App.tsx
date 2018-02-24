@@ -22,7 +22,7 @@ class App extends React.Component<{}, {}> {
     <div>
     <TopBar />
     <Route path="/" exact={true} component={Library} />
-    <Route path="/podcast" component={Episodes} />
+    <Route path="/podcast/:podcastId" component={Episodes} />
     </div>
     )
   }
