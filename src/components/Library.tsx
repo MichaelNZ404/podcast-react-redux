@@ -37,7 +37,7 @@ class Library extends React.Component<Props, State> {
         }
         const cards = this.state.podcasts.map((podcast: Podcast) => 
         <div key={podcast.id} className="item"><LibraryCard  {...podcast} /></div>);
-        return (<OwlCarousel className="owl-theme" loop={true} margin={10} nav={true}>{cards}</OwlCarousel>);
+        return (<OwlCarousel className="owl-theme" loop={true} margin={10}>{cards}</OwlCarousel>);
     }
 
 }

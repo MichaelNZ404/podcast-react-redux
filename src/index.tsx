@@ -1,14 +1,13 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom'
 import registerServiceWorker from './registerServiceWorker';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import { enthusiasm } from './reducers/index';
 import { StoreState } from './types/index';
 import './index.css';
-// import Player from './containers/Player';
-// import Episodes from './containers/Episodes';
-import Library from './containers/Library';
+import App from './containers/App';
 
 const initialState = {
   audioSource: "http://traffic.libsyn.com/joeroganexp/p1079.mp3",
@@ -23,7 +22,9 @@ const store = createStore<StoreState>(
 
 ReactDOM.render(
   <Provider store={store}>
-    <Library />
+    <BrowserRouter>
+      <App />
+    </ BrowserRouter>
   </Provider>,
   document.getElementById('root') as HTMLElement
 );

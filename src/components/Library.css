@@ -4,11 +4,26 @@ a {
 }
 .podcast-card{
   margin: 20px 20px;
-  border: 1px dashed black;
-  border-radius: 10px;
-  background-color: #EEE;
-  max-height: 200px;
+  border: 2px solid #831010;
+  /* border-radius: 10px; */
+  background-color: #564d4d;
+  max-height: 204px;
+  overflow: hidden;
+  color: #FFFFFF;
 }
+
+.podcast-details{
+  padding-top: 3px;
+  word-wrap: break-word;
+}
+
+.podcast-details h2{
+  font-size: 1.5em;
+}
+.podcast-details h3{
+  font-size: 1em;
+}
+
 .owl-carousel .owl-item .podcast-image{
   float:left;
   margin-right: 10px;
