@@ -1,4 +1,5 @@
 export interface StoreState {
-    languageName: string;
-    enthusiasmLevel: number;
+    audioSource: string,
+    itunes_url: string,
+    itunes_rss: string
 }
