@@ -47,7 +47,7 @@ export function LibraryCard(props: Podcast) {
     return (
         <a href={props.url}>
             <div className="podcast-card">
-                <img src={props.artworkUrl100} height="200"/>
+                <img className="podcast-image" src={props.artworkUrl100}/>
                 <div className="podcast-details">
                     <h2>{props.artistName}</h2>
                     <h3>{props.name}</h3>

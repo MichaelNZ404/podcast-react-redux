@@ -7,17 +7,17 @@ a {
   border: 1px dashed black;
   border-radius: 10px;
   background-color: #EEE;
+  max-height: 200px;
 }
-.podcast-card h3{
-  width: 1000px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.podcast-card img{
+.owl-carousel .owl-item .podcast-image{
   float:left;
   margin-right: 10px;
+  width: auto;
 }
 .clearfix{
   clear:both;
+}
+
+.owl-stage-outer{
+  height: 250px;
 }
