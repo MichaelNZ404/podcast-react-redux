@@ -1,6 +1,13 @@
 .topbar .icon{
     width: 50px;
     margin-right: 10px;
+    float: left;
+}
+
+.topbar h2{
+    text-transform: uppercase;
+    font-weight: bolder;
+    color: white;
 }
 
 .topbar{

@@ -11,7 +11,7 @@ class TopBar extends React.Component<{}, {}> {
     return(
     <div className="topbar">
       <img className='icon' src={logo}/>
-      You are not logged in
+      <h2> PodSync </h2>
     </div>)
   }
 }

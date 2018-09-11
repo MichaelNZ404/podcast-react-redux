@@ -1,6 +1,12 @@
 # Podcast Player
 This pet project aims to create a web podcast player using react and redux, oauth and potentially react native. 
 
+![Screenshot](README.png)
+
+### Usage
+- Run `npm install` followed by `npm start`
+- Visit `http://localhost:3000/` in your browser
+
 ### Primary Goals
 1. Create a web player that can play a hardcoded URL podcast, react [Complete]
 2. Create a library that can render podcasts, react [Code Complete / Pending Tests]

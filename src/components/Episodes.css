@@ -3,16 +3,24 @@ a {
     text-decoration: none;
 }
 .episode-card{
-    margin: 20px 20px;
-    border: 1px dashed black;
-    border-radius: 10px;
-    background-color: #EEE;
-}
-.episode-card h3{
-    width: 1000px;
-    white-space: nowrap;
+    margin: 20px 0px;
+    border: 2px solid #831010;
+    /* border-radius: 10px; */
+    background-color: #564d4d;
+    max-height: 204px;
     overflow: hidden;
-    text-overflow: ellipsis;
+    color: #FFFFFF;
+}
+.episode-details{
+    padding-top: 3px;
+    word-wrap: break-word;
+}
+
+.episode-details h2{
+    font-size: 1.5em;
+  }
+.episode-details h3{
+font-size: 1em;
 }
 .episode-card img{
     float:left;
@@ -20,4 +28,9 @@ a {
 }
 .clearfix{
     clear:both;
+}
+
+.episodes-container{
+    margin: 0px 20px;
+    color: #db0000
 }

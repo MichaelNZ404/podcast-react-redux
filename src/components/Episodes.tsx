@@ -17,8 +17,9 @@ export interface State {
     loading: boolean,
     error: boolean,
     itunes_url: string,
-    feed_url: string | null
-    episodes: Array<any>
+    feed_url: string | null,
+    episodes: Array<any>,
+    title: string | null
 }
 
 class Episodes extends React.Component<Props, State> {
@@ -50,7 +51,8 @@ class Episodes extends React.Component<Props, State> {
                         }
                         this.setState({
                             loading: false,
-                            episodes: episodes
+                            episodes: episodes,
+                            title: xmlDoc.getElementsByTagName("title")[0].textContent
                         })
                     })
                     .catch((error) => {
@@ -65,20 +67,21 @@ class Episodes extends React.Component<Props, State> {
             error: false,
             itunes_url: props.itunes_url,
             feed_url: null,
-            episodes: []
+            episodes: [],
+            title: null
         }
     }
 
     render() {
         if (this.state.loading) {
-            return <span>Loading</span>
+            return <div className="episodes-container"><span>Loading</span></div>
         }
         if (this.state.error) {
-            return <span>ERROR</span>
+            return <div className="episodes-container"><span>ERROR</span></div>
         }
         return (
-            <div>
-                <div>{this.state.feed_url}</div>
+            <div className="episodes-container">
+                <h1>{this.state.title}</h1>
                 {this.state.episodes.slice(0, 10).map(episode => <EpisodeCard key={episode.title} {...episode} />)}
             </div>
         );
