@@ -7,14 +7,19 @@ a {
   border: 2px solid #831010;
   /* border-radius: 10px; */
   background-color: #564d4d;
-  max-height: 204px;
+  /* max-height: 204px; */
   overflow: hidden;
   color: #FFFFFF;
+}
+
+.podcast-image {
+  width: 100%;
 }
 
 .podcast-details{
   padding-top: 3px;
   word-wrap: break-word;
+  display: none;
 }
 
 .podcast-details h2{
@@ -40,7 +45,11 @@ a {
 .genre-strip h4{
   color: #db0000
 }
+.slick-next:before, .slick-prev:before{
+  color: #db0000;
+}
 
 .library-container{
   margin-left: 10px;
+  padding: 50px;
 }

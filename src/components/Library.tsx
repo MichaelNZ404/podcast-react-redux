@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { Link } from "react-router-dom";
+import Slider from "react-slick";
 
 import './Library.css';
-// @ts-ignore
-import OwlCarousel from 'react-owl-carousel';
 
-let data = require('../../src/us-top-100-podcasts.json')
+const DATA = require('../../src/us-top-100-podcasts.json')
+const SLIDES_TO_SHOW = 8;
 
 export interface Props {
     itunes_rss: string;
@@ -29,7 +29,7 @@ class Library extends React.Component<Props, State> {
         super(props);
         this.state = {
             loading: false,
-            podcasts: data['feed']['results']
+            podcasts: DATA['feed']['results']
         }
     }
 
@@ -100,7 +100,7 @@ function getPodcastGenres(podcasts: Array<Podcast>) {
     })
 
     Object.keys(genres).forEach((key) => {
-        if    (genres[key].length < 3) {
+        if    (genres[key].length < SLIDES_TO_SHOW) {
             delete genres[key]
         }
     });
@@ -108,12 +108,19 @@ function getPodcastGenres(podcasts: Array<Podcast>) {
 }
 
 function GenreStripCard(genre: Genre) {
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: SLIDES_TO_SHOW,
+        slidesToScroll: Math.ceil(SLIDES_TO_SHOW / 3)
+      };
     const cards = genre['podcasts'].map((podcast: Podcast) => 
         <div key={podcast.id} className="item"><LibraryCard  {...podcast} /></div>);
     return (
         <div className='genre-strip'>
             <h4>{genre.name}</h4>
-            <OwlCarousel className="owl-theme" loop={true} margin={10}>{cards}</OwlCarousel>
+            <Slider {...settings}>{cards}</Slider>
         </div> 
     );
 }
